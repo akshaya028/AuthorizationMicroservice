@@ -20,22 +20,14 @@ namespace Authorization_Microservice.Controllers
     {
         private readonly IAuthManager authManager;
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(AuthorizationController));
-        public AuthorizationController(IAuthManager authManager=null)
+        public AuthorizationController(IAuthManager authManager)
         {
             this.authManager = authManager;
         }   
-
-        // GET: api/<AuthorizationController>
-        /*[HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }*/
         [HttpPost]
         [AllowAnonymous]
         public virtual IActionResult Authenticate([FromBody] PortalLoginDetails loginDetails)
         {
-            //DataLayer dataLayer = new DataLayer();
             _log4net.Info("In Authorization controller ");
             var token =authManager.Validate(loginDetails);
             if (token!=null)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Authorization_Microservice.ServiceLayer
 {
-    public class RepositoryWrapper
+    public class RepositoryWrapper:IRepositoryWrapper
     {
         private DataLayer dataLayer;
         public RepositoryWrapper(DataLayer datalayer)

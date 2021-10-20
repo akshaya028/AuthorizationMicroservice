@@ -28,11 +28,12 @@ namespace Authorization_Microservice
         }
 
         public IConfiguration Configuration { get; }
+        public static string ConnectionString { get; internal set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            ConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

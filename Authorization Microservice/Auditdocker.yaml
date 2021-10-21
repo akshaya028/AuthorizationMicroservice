@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: authrepos
-        image: authorizationservicecr.azurecr.io/dockersamplerepos:latest
+        image: authorizationservicecr.azurecr.io/authrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authorizedepl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Authorization_Microservice
+  template:
+    metadata:
+      labels:
+        app: Authorization_Microservice
+    spec:
+      containers:
+      - name: authrepos
+        image: authorizationservicecr.azurecr.io/dockersamplerepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: dsconfigsn1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authorizedepl
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: Authorization_Microservice
